@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,13 +19,15 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::prefix('notification')->group(function() {
+    Route::get('/', [NotificationController::class, 'index'])->name('notification');
+    Route::get('/show/{id}', [NotificationController::class, 'show'])->name('notification.show');
 
-Auth::routes();
+    Route::get('/create', [NotificationController::class, 'create'])->name('notification.create');
+    Route::post('/store', [NotificationController::class, 'store'])->name('notification.store');
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/edit/{id}', [NotificationController::class, 'edit'])->name('notification.edit');
+    Route::put('/update/{id}', [NotificationController::class, 'update'])->name('notification.update');
+});
