@@ -13,7 +13,7 @@ class NotificationRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class NotificationRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'describe' => 'required',
+            // 'status' => 'required|boolean'
         ];
     }
 }

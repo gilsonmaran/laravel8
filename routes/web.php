@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\notificationController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
@@ -22,12 +22,12 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::prefix('notification')->group(function() {
-    Route::get('/', [notificationController::class, 'index'])->name('notification');
-    Route::get('/show/{id}', [notificationController::class, 'show'])->name('notification.show');
+    Route::get('/', [NotificationController::class, 'index'])->name('notification');
+    Route::get('/show/{id}', [NotificationController::class, 'show'])->name('notification.show');
 
-    Route::get('/create', [notificationController::class, 'create'])->name('notification.create');
-    Route::post('/store', [notificationController::class, 'store'])->name('notification.store');
+    Route::get('/create', [NotificationController::class, 'create'])->name('notification.create');
+    Route::post('/store', [NotificationController::class, 'store'])->name('notification.store');
 
-    Route::get('/edit/{id}', [notificationController::class, 'edit'])->name('notification.edit');
-    Route::put('/update/{id}', [notificationController::class, 'update'])->name('notification.update');
+    Route::get('/edit/{id}', [NotificationController::class, 'edit'])->name('notification.edit');
+    Route::put('/update/{id}', [NotificationController::class, 'update'])->name('notification.update');
 });
