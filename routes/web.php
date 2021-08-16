@@ -21,4 +21,13 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/notification', [notificationController::class, 'index'])->name('notification');
+Route::prefix('notification')->group(function() {
+    Route::get('/', [notificationController::class, 'index'])->name('notification');
+    Route::get('/show/{id}', [notificationController::class, 'show'])->name('notification.show');
+
+    Route::get('/create', [notificationController::class, 'create'])->name('notification.create');
+    Route::post('/store', [notificationController::class, 'store'])->name('notification.store');
+
+    Route::get('/edit/{id}', [notificationController::class, 'edit'])->name('notification.edit');
+    Route::put('/update/{id}', [notificationController::class, 'update'])->name('notification.update');
+});
